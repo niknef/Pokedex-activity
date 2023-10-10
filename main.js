@@ -41,9 +41,10 @@ function createPokemon(pokemon){
     url.classList.add('card-text', 'text-secondary');
     url.textContent = pokemon.species.url;
 
-    const button = document.createElement('a');
+    const button = document.createElement('button');
     button.classList.add('btn', 'btn-primary'); 
-    button.setAttribute('href', '#'); 
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#pokemonModal');
     button.textContent = 'Stats';
 
     //agregamos los elementos que van dentro del body de nuestra tarjeta
@@ -59,7 +60,11 @@ function createPokemon(pokemon){
     col.appendChild(card);
     // Agregamos la tarjeta al contenedor
     cardContainer.appendChild(col);
-}
+};
+
+//modal
+
+
 
 // Llamamos a la función fetchPokemons para comenzar a obtener datos de Pokémon
 fetchPokemons();
