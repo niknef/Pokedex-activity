@@ -54,6 +54,8 @@ function createPokemon(pokemon) {
     // Agrega un controlador de eventos al botón "Stats"
     button.addEventListener('click', (event) => {
         const pokemonData = JSON.parse(event.currentTarget.getAttribute('data-pokemon'));
+        //llamamos a la funcion que utilizamos para registrar en local storage
+        registerModalOpened(pokemonData);
         renderModal(pokemonData);
     });
 
@@ -72,7 +74,14 @@ function createPokemon(pokemon) {
     cardContainer.appendChild(col);
 }
 
+//funcion para guardar en local storage
+function registerModalOpened(pokemon) {
+    const openedModals = JSON.parse(localStorage.getItem('openedModals')) || [];
+    openedModals.push(pokemon.name); // O puedes usar pokemon.id si prefieres
+    localStorage.setItem('openedModals', JSON.stringify(openedModals));
+}
 
+//funcion en la cual registramos las stadisticas para imprimirlas en barras 
 function progressBars(stats) {
     // ... Crea y estructura barras de progreso para las estadísticas del Pokémon ...
     const statsContainer = document.createElement("div");
